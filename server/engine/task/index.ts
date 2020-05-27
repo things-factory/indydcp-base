@@ -1,0 +1,8 @@
+import './indydcp-dis'
+import './indydcp-do'
+import './indydcp-ais'
+import './indydcp-ao'
+import './indydcp-move'
+import './indydcp-home'
+import './indydcp-zero'
+import './indydcp-run'
