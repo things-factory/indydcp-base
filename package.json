@@ -5,7 +5,7 @@
   "browser": "client/index.js",
   "things-factory": true,
   "license": "MIT",
-  "author": "heartyoh&#39;",
+  "author": "heartyoh;",
   "scripts": {
     "serve": "things-factory indydcp-base",
     "serve:dev": "npm run build:server && things-factory-dev indydcp-base",
