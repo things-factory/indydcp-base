@@ -34,9 +34,12 @@ export class IndyDCPConnector implements Connector {
   get parameterSpec() {
     return [
       {
-        type: 'string',
+        type: 'select',
         label: 'robot-name',
-        name: 'robotName'
+        name: 'robotName',
+        property: {
+          options: ['', 'NRMK-Indy7']
+        }
       }
     ]
   }
