@@ -18,7 +18,7 @@ export class IndyDCPConnector implements Connector {
     const [host, port = 6066] = endpoint.split(':')
 
     var client = new IndyDCPClient(host, robotName)
-
+    client.connect()
     Connections.addConnection(connection.name, client)
 
     Connections.logger.info(`indydcp-connector connection(${connection.name}:${connection.endpoint}) is connected`)
