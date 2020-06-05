@@ -43,6 +43,10 @@ export class IndyDCPConnector implements Connector {
       }
     ]
   }
+
+  get taskPrefixes() {
+    return ['indydcp']
+  }
 }
 
 Connections.registerConnector('indydcp-connector', new IndyDCPConnector())
