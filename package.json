@@ -1,6 +1,6 @@
 {
   "name": "@things-factory/indydcp-base",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "dist-server/index.js",
   "browser": "client/index.js",
   "things-factory": true,
@@ -30,11 +30,10 @@
     "stop": "things-factory-stop indydcp-base"
   },
   "dependencies": {
-    "@things-factory/integration-base": "^2.3.0",
-    "@things-factory/node-indydcp": "^0.7.1",
-    "@things-factory/shell": "*"
+    "@things-factory/integration-base": "^2.0.0",
+    "@things-factory/node-indydcp": "^0.7.1"
   },
   "devDependencies": {
-    "@things-factory/operato-ecs": "^2.0.27"
+    "@things-factory/operato-ecs": "^2.0.0"
   }
 }
