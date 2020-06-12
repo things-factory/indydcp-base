@@ -1,4 +1,12 @@
 {
   "label.robot-name": "robot name",
-  "label.expected_value": "Expect Value"
+  "label.expected_value": "Expect Value",
+  "label.index": "Index",
+  "label.address": "Address",
+  "label.X": "X",
+  "label.Y": "Y",
+  "label.Z": "Z",
+  "label.U": "U",
+  "label.V": "V",
+  "label.W": "W"
 }

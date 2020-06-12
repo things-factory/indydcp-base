@@ -1,10 +1,10 @@
 import { Connections, TaskRegistry } from '@things-factory/integration-base'
 import { sleep } from '@things-factory/utils'
 
-async function IndyDcpDwait(step, { logger }) {
+async function IndyDcpDiWait(step, { logger }) {
   var { 
     connection,
-    params: { plcAddress: address, value }
+    params: { address, value }
   } = step
 
   var client = Connections.getConnection(connection)
@@ -12,30 +12,30 @@ async function IndyDcpDwait(step, { logger }) {
     throw new Error(`no connection : ${connection}`)
   }
 
-  var dis = await client.getSmartDIs()
-
+  
   while (true) {
-    if (dis[address] == value) {
+    if (di == value) {
       break
     } else {
-      await sleep(1)
+      var di = await client.getSmartDI(address)
+      await sleep(10)
     }
   }
 
   return {
-    data: dis
+    data: di
   }
 }
 
-IndyDcpDwait.parameterSpec = [{
+IndyDcpDiWait.parameterSpec = [{
   type: 'string',
   name: 'address',
   label: 'address'
 },
 {
-  type: 'string',
+  type: 'checkbox',
   name: 'value',
   label: 'expected_value'
 }]
 
-TaskRegistry.registerTaskHandler('indydcp-dwait', IndyDcpDwait)
+TaskRegistry.registerTaskHandler('indydcp-di-wait', IndyDcpDiWait)

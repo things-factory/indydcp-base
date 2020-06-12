@@ -10,6 +10,20 @@ async function IndyDcpReset(step, { logger }) {
 
   await client.resetRobot()
   var robotStatus = await client.getRobotStatus()
+  // is_emergencyStop:false
+  // is_errorState:false
+  // isBusy:false
+  // isCollided:false
+  // isContyConnected:true
+  // isDirectTeachingMode:false
+  // isHome:false
+  // isInResetting:false
+  // isMoveFinished:false
+  // isProgramPaused:false
+  // isProgramRunning:false
+  // isRobotReady:true
+  // isRobotRunning:true
+  // isTeachingMode:false
 
   return {
     data: robotStatus

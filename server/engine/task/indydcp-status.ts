@@ -1,6 +1,6 @@
 import { Connections, TaskRegistry } from '@things-factory/integration-base'
 
-async function IndyDcpState(step, { logger }) {
+async function IndyDcpStatus(step, { logger }) {
   var { connection } = step
 
   var client = Connections.getConnection(connection)
@@ -15,6 +15,6 @@ async function IndyDcpState(step, { logger }) {
   }
 }
 
-IndyDcpState.parameterSpec = []
+IndyDcpStatus.parameterSpec = []
 
-TaskRegistry.registerTaskHandler('indydcp-state', IndyDcpState)
+TaskRegistry.registerTaskHandler('indydcp-status', IndyDcpStatus)

@@ -10,7 +10,8 @@ async function IndyDcpDIs(step, { logger }) {
   }
 
   var dis = await client.getSmartDIs()
-
+  // dis: Array(32) [false, false, false, false, false, false, false, false, …]
+  
   return {
     data: dis
   }
