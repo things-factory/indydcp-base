@@ -1,3 +1,4 @@
 {
-  "label.robot-name": "robot name"
+  "label.robot-name": "robot name",
+  "label.expected_value": "Expect Value"
 }
