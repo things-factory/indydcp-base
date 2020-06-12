@@ -8,6 +8,7 @@ async function IndyDcpReset(step, { logger }) {
     throw new Error(`no connection : ${connection}`)
   }
 
+  await client.resetRobot()
   var robotStatus = await client.getRobotStatus()
 
   return {
