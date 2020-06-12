@@ -11,6 +11,8 @@ async function IndyDcpSetSpeed(step, { logger }) {
     throw new Error(`no connection : ${connection}`)
   }
 
+  await client.waitForState(client, status => !status.isBusy)
+  
   if (type == 'JOINT') {
     await client.setJointSpeedLevel(level)
   } else {
