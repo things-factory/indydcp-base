@@ -20,6 +20,7 @@ export class IndyDCPConnector implements Connector {
     var client = new IndyDCPClient(host, robotName)
     client.connect()
     Connections.addConnection(connection.name, {
+      ...connection,
       discriminator: 'robot-arm',
       client
     })
