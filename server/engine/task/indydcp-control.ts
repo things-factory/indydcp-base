@@ -2,16 +2,16 @@ import { Connections, TaskRegistry } from '@things-factory/integration-base'
 import { waitForState } from './util'
 
 async function IndyDcpControl(step, { logger }) {
-  var { 
+  var {
     connection,
     params: { action }
   } = step
 
-  var client = Connections.getConnection(connection)
+  var { client } = Connections.getConnection(connection) || {}
   if (!client) {
     throw new Error(`no connection : ${connection}`)
   }
-  
+
   if (action == 'start') {
     await waitForState(client, status => !status.isBusy)
     await client.changeToDirectTeaching()

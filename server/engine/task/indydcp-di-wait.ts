@@ -2,17 +2,16 @@ import { Connections, TaskRegistry } from '@things-factory/integration-base'
 import { sleep } from '@things-factory/utils'
 
 async function IndyDcpDiWait(step, { logger }) {
-  var { 
+  var {
     connection,
     params: { address, value }
   } = step
 
-  var client = Connections.getConnection(connection)
+  var { client } = Connections.getConnection(connection) || {}
   if (!client) {
     throw new Error(`no connection : ${connection}`)
   }
 
-  
   while (true) {
     if (di == value) {
       break
@@ -27,15 +26,17 @@ async function IndyDcpDiWait(step, { logger }) {
   }
 }
 
-IndyDcpDiWait.parameterSpec = [{
-  type: 'string',
-  name: 'address',
-  label: 'address'
-},
-{
-  type: 'checkbox',
-  name: 'value',
-  label: 'expected_value'
-}]
+IndyDcpDiWait.parameterSpec = [
+  {
+    type: 'string',
+    name: 'address',
+    label: 'address'
+  },
+  {
+    type: 'checkbox',
+    name: 'value',
+    label: 'expected_value'
+  }
+]
 
 TaskRegistry.registerTaskHandler('indydcp-di-wait', IndyDcpDiWait)

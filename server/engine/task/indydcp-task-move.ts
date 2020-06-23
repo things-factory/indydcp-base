@@ -2,12 +2,12 @@ import { Connections, TaskRegistry } from '@things-factory/integration-base'
 import { waitForState } from './util'
 
 async function IndyDcpTaskMove(step, { logger }) {
-  var { 
+  var {
     connection,
-    params: { type, x=0, y=0, z=0, u=0, v=0, w=0 }
+    params: { type, x = 0, y = 0, z = 0, u = 0, v = 0, w = 0 }
   } = step
 
-  var client = Connections.getConnection(connection)
+  var { client } = Connections.getConnection(connection) || {}
   if (!client) {
     throw new Error(`no connection : ${connection}`)
   }
@@ -15,7 +15,7 @@ async function IndyDcpTaskMove(step, { logger }) {
   await waitForState(client, status => !status.isBusy)
 
   var taskPositions = await client.getTaskPos()
-  
+
   taskPositions[0] = new Number(x)
   taskPositions[1] = new Number(y)
   taskPositions[2] = new Number(z)
@@ -24,7 +24,7 @@ async function IndyDcpTaskMove(step, { logger }) {
     taskPositions[3] = new Number(u)
     taskPositions[4] = new Number(v)
     taskPositions[5] = new Number(w)
-    
+
     await client.taskMoveBy(taskPositions)
   } else {
     taskPositions[3] += new Number(u)
@@ -46,7 +46,7 @@ IndyDcpTaskMove.parameterSpec = [
       options: [
         { display: ' ', value: '' },
         { display: 'MoveTo', value: 'TO' },
-        { display: 'MoveBy', value: 'BY' },
+        { display: 'MoveBy', value: 'BY' }
       ]
     }
   },

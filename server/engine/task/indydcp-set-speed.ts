@@ -2,18 +2,18 @@ import { Connections, TaskRegistry } from '@things-factory/integration-base'
 import { waitForState } from './util'
 
 async function IndyDcpSetSpeed(step, { logger }) {
-  var { 
+  var {
     connection,
     params: { type, level }
   } = step
 
-  var client = Connections.getConnection(connection)
+  var { client } = Connections.getConnection(connection) || {}
   if (!client) {
     throw new Error(`no connection : ${connection}`)
   }
 
   await waitForState(client, status => !status.isBusy)
-  
+
   if (type == 'JOINT') {
     await client.setJointSpeedLevel(level)
   } else {
@@ -32,7 +32,7 @@ IndyDcpSetSpeed.parameterSpec = [
       options: [
         { display: ' ', value: '' },
         { display: 'Joint', value: 'JOINT' },
-        { display: 'Task', value: 'TASK' },
+        { display: 'Task', value: 'TASK' }
       ]
     }
   },

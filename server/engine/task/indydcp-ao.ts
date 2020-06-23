@@ -7,7 +7,7 @@ async function IndyDcpAO(step, { logger }) {
     params: { index, value }
   } = step
 
-  var client = Connections.getConnection(connection)
+  var { client } = Connections.getConnection(connection) || {}
   if (!client) {
     throw new Error(`no connection : ${connection}`)
   }

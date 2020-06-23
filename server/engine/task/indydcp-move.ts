@@ -7,7 +7,7 @@ async function IndyDcpMove(step, { logger }) {
     params: { position }
   } = step
 
-  var client = Connections.getConnection(connection)
+  var { client } = Connections.getConnection(connection) || {}
   if (!client) {
     throw new Error(`no connection : ${connection}`)
   }

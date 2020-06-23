@@ -4,7 +4,7 @@ import { waitForState } from './util'
 async function IndyDcpZero(step, { logger }) {
   var { connection } = step
 
-  var client = Connections.getConnection(connection)
+  var { client } = Connections.getConnection(connection) || {}
   if (!client) {
     throw new Error(`no connection : ${connection}`)
   }

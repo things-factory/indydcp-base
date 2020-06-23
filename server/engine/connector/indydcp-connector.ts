@@ -19,13 +19,16 @@ export class IndyDCPConnector implements Connector {
 
     var client = new IndyDCPClient(host, robotName)
     client.connect()
-    Connections.addConnection(connection.name, client)
+    Connections.addConnection(connection.name, {
+      discriminator: 'robot-arm',
+      client
+    })
 
     Connections.logger.info(`indydcp-connector connection(${connection.name}:${connection.endpoint}) is connected`)
   }
 
   async disconnect(name) {
-    var client = Connections.removeConnection(name)
+    var { client } = Connections.removeConnection(name) || {}
     client?.disconnect()
 
     Connections.logger.info(`indydcp-connector connection(${name}) is disconnected`)

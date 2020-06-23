@@ -4,14 +4,14 @@ import { Connections, TaskRegistry } from '@things-factory/integration-base'
 async function IndyDcpDIs(step, { logger }) {
   var { connection } = step
 
-  var client = Connections.getConnection(connection)
+  var { client } = Connections.getConnection(connection) || {}
   if (!client) {
     throw new Error(`no connection : ${connection}`)
   }
 
   var dis = await client.getSmartDIs()
   // dis: Array(32) [false, false, false, false, false, false, false, false, …]
-  
+
   return {
     data: dis
   }
