@@ -44,6 +44,16 @@ export class IndyDCPConnector implements Connector {
         property: {
           options: ['', 'NRMK-Indy7']
         }
+      },
+      {
+        type: 'offset-pose',
+        label: 'marker-offset',
+        name: 'markerOffset'
+      },
+      {
+        type: 'offset-pose',
+        label: 'gripper-offset',
+        name: 'gripperOffset'
       }
     ]
   }
