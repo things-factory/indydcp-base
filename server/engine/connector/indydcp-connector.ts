@@ -52,8 +52,8 @@ export class IndyDCPConnector implements Connector {
       },
       {
         type: 'offset-pose',
-        label: 'gripper-offset',
-        name: 'gripperOffset'
+        label: 'tool-offset',
+        name: 'toolOffset'
       }
     ]
   }
