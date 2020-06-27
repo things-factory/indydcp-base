@@ -1,6 +1,5 @@
 import { Connections, TaskRegistry } from '@things-factory/integration-base'
 
-/* TODO Not implemented yet */
 async function IndyDcpAO(step, { logger }) {
   var {
     connection,
