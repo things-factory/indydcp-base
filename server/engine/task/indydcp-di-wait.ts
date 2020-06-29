@@ -1,7 +1,7 @@
 import { Connections, TaskRegistry } from '@things-factory/integration-base'
 import { sleep } from '@things-factory/utils'
 
-async function IndyDcpDiWait(step, { logger }) {
+async function IndyDcpDiWait(step, { root }) {
   var {
     connection,
     params: { address, value }
@@ -13,11 +13,18 @@ async function IndyDcpDiWait(step, { logger }) {
   }
 
   while (true) {
-    if (di == value) {
-      break
+    let state = root.getState()
+    if (state == 1 /* STARTED */) {
+      if (di == value) {
+        break
+      } else {
+        var di = await client.getSmartDI(address)
+        await sleep(10)
+      }
+    } else if (state == 2 /* PAUSED */) {
+      await sleep(1000)
     } else {
-      var di = await client.getSmartDI(address)
-      await sleep(10)
+      throw new Error('scenario stopped unexpectedly')
     }
   }
 
