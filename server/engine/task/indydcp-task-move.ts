@@ -16,8 +16,21 @@ async function IndyDcpTaskMove(step, { logger, data }) {
   await waitForState(client, status => !status.isBusy)
 
   var taskPositions = access(accessor, data)
-  if (!taskPositions) {
-    throw new Error('task-position is not given')
+  if (!taskPositions || typeof taskPositions !== 'object') {
+    throw new Error(`correct type task-position is not given : ${taskPositions}`)
+  }
+
+  taskPositions = [
+    taskPositions[0] || taskPositions['x'],
+    taskPositions[1] || taskPositions['y'],
+    taskPositions[2] || taskPositions['z'],
+    taskPositions[3] || taskPositions['u'],
+    taskPositions[4] || taskPositions['v'],
+    taskPositions[5] || taskPositions['w']
+  ]
+
+  if(isNaN(taskPositions.reduce((v, sum) => sum + v, 0)) {
+    throw new Error(`correct value task-position is not given : ${taskPositions}`)
   }
 
   if (type == 'BY') {
