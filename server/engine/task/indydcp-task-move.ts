@@ -48,7 +48,7 @@ IndyDcpTaskMove.parameterSpec = [
   },
   {
     type: 'string',
-    lable: 'accessor',
+    label: 'accessor',
     name: 'accessor'
   }
 ]
