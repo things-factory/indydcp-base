@@ -5,7 +5,7 @@ import { waitForState } from './util'
 async function IndyDcpTaskMove(step, { logger, data }) {
   var {
     connection,
-    params: { type, accessor, pose }
+    params: { type, accessor }
   } = step
 
   var { client } = Connections.getConnection(connection) || {}
@@ -15,7 +15,10 @@ async function IndyDcpTaskMove(step, { logger, data }) {
 
   await waitForState(client, status => !status.isBusy)
 
-  var taskPositions = access(accessor, data) || pose
+  var taskPositions = access(accessor, data)
+  if (!taskPositions) {
+    throw new Error('task-position is not given')
+  }
 
   if (type == 'BY') {
     await client.taskMoveBy(taskPositions)
@@ -47,11 +50,6 @@ IndyDcpTaskMove.parameterSpec = [
     type: 'string',
     lable: 'accessor',
     name: 'accessor'
-  },
-  {
-    type: 'pose',
-    label: 'pose',
-    name: 'pose'
   }
 ]
 
