@@ -1,10 +1,11 @@
 import { Connections, TaskRegistry } from '@things-factory/integration-base'
+import { access } from '@things-factory/utils'
 import { waitForState } from './util'
 
-async function IndyDcpTaskMove(step, { logger }) {
+async function IndyDcpTaskMove(step, { logger, data }) {
   var {
     connection,
-    params: { type, x = 0, y = 0, z = 0, u = 0, v = 0, w = 0 }
+    params: { type, accessor, pose }
   } = step
 
   var { client } = Connections.getConnection(connection) || {}
@@ -14,27 +15,19 @@ async function IndyDcpTaskMove(step, { logger }) {
 
   await waitForState(client, status => !status.isBusy)
 
-  var taskPositions = await client.getTaskPos()
-
-  taskPositions[0] = new Number(x)
-  taskPositions[1] = new Number(y)
-  taskPositions[2] = new Number(z)
+  var taskPositions = access(accessor, data) || pose
 
   if (type == 'BY') {
-    taskPositions[3] = new Number(u)
-    taskPositions[4] = new Number(v)
-    taskPositions[5] = new Number(w)
-
     await client.taskMoveBy(taskPositions)
   } else {
-    taskPositions[3] += new Number(u)
-    taskPositions[4] += new Number(v)
-    taskPositions[5] += new Number(w)
-
     await client.taskMoveTo(taskPositions)
   }
 
-  return {}
+  await waitForState(client, status => !status.isBusy)
+
+  return {
+    data: await client.getTaskPos()
+  }
 }
 
 IndyDcpTaskMove.parameterSpec = [
@@ -52,33 +45,13 @@ IndyDcpTaskMove.parameterSpec = [
   },
   {
     type: 'string',
-    label: 'x',
-    name: 'x'
+    lable: 'accessor',
+    name: 'accessor'
   },
   {
-    type: 'string',
-    label: 'y',
-    name: 'y'
-  },
-  {
-    type: 'string',
-    label: 'z',
-    name: 'z'
-  },
-  {
-    type: 'string',
-    label: 'u',
-    name: 'u'
-  },
-  {
-    type: 'string',
-    label: 'v',
-    name: 'v'
-  },
-  {
-    type: 'string',
-    label: 'w',
-    name: 'w'
+    type: 'pose',
+    label: 'pose',
+    name: 'pose'
   }
 ]
 

@@ -15,6 +15,8 @@ async function IndyDcpControl(step, { logger }) {
   if (action == 'start') {
     await waitForState(client, status => !status.isBusy)
     await client.changeToDirectTeaching()
+
+    // await waitForState(client, status => !status.isTeachingMode)
   } else {
     await client.finishDirectTeaching()
   }

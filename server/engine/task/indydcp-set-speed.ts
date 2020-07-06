@@ -20,7 +20,9 @@ async function IndyDcpSetSpeed(step, { logger }) {
     await client.setTaskSpeedLevel(level)
   }
 
-  return {}
+  return {
+    data: level
+  }
 }
 
 IndyDcpSetSpeed.parameterSpec = [
@@ -30,7 +32,7 @@ IndyDcpSetSpeed.parameterSpec = [
     name: 'type',
     property: {
       options: [
-        { display: ' ', value: '' },
+        { display: '', value: '' },
         { display: 'Joint', value: 'JOINT' },
         { display: 'Task', value: 'TASK' }
       ]

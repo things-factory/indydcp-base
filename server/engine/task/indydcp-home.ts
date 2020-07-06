@@ -13,7 +13,9 @@ async function IndyDcpHome(step, { logger }) {
 
   await waitForState(client, status => !status.isBusy)
 
-  return {}
+  return {
+    data: await client.getTaskPos()
+  }
 }
 
 IndyDcpHome.parameterSpec = []

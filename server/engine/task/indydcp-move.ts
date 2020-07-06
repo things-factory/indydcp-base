@@ -17,7 +17,7 @@ async function IndyDcpMove(step, { logger }) {
   await waitForState(client, status => !status.isBusy)
 
   return {
-    data: position
+    data: await client.getTaskPos()
   }
 }
 
