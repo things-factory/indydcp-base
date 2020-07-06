@@ -29,7 +29,7 @@ async function IndyDcpTaskMove(step, { logger, data }) {
     taskPositions[5] || taskPositions['w']
   ]
 
-  if(isNaN(taskPositions.reduce((v, sum) => sum + v, 0)) {
+  if (isNaN(taskPositions.reduce((sum, v) => sum + v, 0))) {
     throw new Error(`correct value task-position is not given : ${taskPositions}`)
   }
 
