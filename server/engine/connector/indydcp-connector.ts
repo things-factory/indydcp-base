@@ -32,9 +32,8 @@ export class IndyDCPConnector implements Connector {
       Connections.logger.info(`indydcp-connector connection(${connection.name}:${connection.endpoint}) is connected`)
     } catch (e) {
       Connections.logger.error(
-        `indydcp-connector connection(${connection.name}:${connection.endpoint}) is not connected`
+        `indydcp-connector connection(${connection.name}:${connection.endpoint}) is not connected.\ncause: ${e}`
       )
-      Connections.logger.error(e)
     }
   }
 
