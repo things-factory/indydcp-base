@@ -22,7 +22,10 @@ export class IndyDCPConnector implements Connector {
     Connections.addConnection(connection.name, {
       ...connection,
       discriminator: 'robot-arm',
-      client
+      client,
+      async getTaskPos() {
+        return await client.getTaskPos()
+      }
     })
 
     Connections.logger.info(`indydcp-connector connection(${connection.name}:${connection.endpoint}) is connected`)
