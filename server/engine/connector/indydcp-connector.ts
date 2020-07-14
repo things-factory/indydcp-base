@@ -61,7 +61,7 @@ export class IndyDCPConnector implements Connector {
       },
       {
         type: 'offset-pose',
-        label: 'poi-offset',
+        label: 'waypoint-offset',
         name: 'waypointOffset'
       },
       {

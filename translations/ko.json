@@ -1,11 +1,9 @@
 {
   "label.robot-name": "로봇 이름",
+  "label.expected_value": "기대값",
   "label.index": "인덱스",
   "label.address": "주소",
-  "label.X": "X",
-  "label.Y": "Y",
-  "label.Z": "Z",
-  "label.U": "U",
-  "label.V": "V",
-  "label.W": "W"
+  "label.marker-offset": "마커 오프셋",
+  "label.tool-offset": "툴 오프셋",
+  "label.waypoint-offset": "진입점 오프셋"
 }

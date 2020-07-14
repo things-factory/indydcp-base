@@ -1,4 +1,9 @@
 {
   "label.robot-name": "robot name",
-  "label.expected_value": "Expect Value"
+  "label.expected_value": "expect value",
+  "label.index": "index",
+  "label.address": "address",
+  "label.marker-offset": "marker offset",
+  "label.tool-offset": "tool offset",
+  "label.waypoint-offset": "waypoint offset"
 }
