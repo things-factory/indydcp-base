@@ -13,3 +13,7 @@ import './indydcp-reset'
 import './indydcp-set-speed'
 import './indydcp-status'
 import './indydcp-task-move'
+
+import './indydcp-start-teaching-mode'
+import './indydcp-finish-teaching-mode'
+import './indydcp-move-to-pose'
